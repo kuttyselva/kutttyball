@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Triggercheck : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+   
+    // Use this for initialization
+    void Start () {
+      
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,6 +18,7 @@ public class Triggercheck : MonoBehaviour {
         if (col.gameObject.tag == "Ball")
         {
             Invoke("Falldown", 0.5f);
+           
            
         }
     }

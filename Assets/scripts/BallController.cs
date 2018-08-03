@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour {
     public GameObject particle;
+  
     [SerializeField]
     private bool started;
     public float speed=0f;
     Rigidbody rb;
-    bool go;
+  
+    public bool go;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
     // Use this for initialization
     void Start () {
+
         started = false;
         go = false;
 	}
@@ -27,6 +30,7 @@ public class BallController : MonoBehaviour {
             {
                 rb.velocity = new Vector3(speed, 0, 0);
                 started = true;
+                Gm.instance.Startgame();
              
             }
         }
@@ -35,6 +39,7 @@ public class BallController : MonoBehaviour {
             go = true;
             rb.velocity = new Vector3(0,-25f, 0);
             Camera.main.GetComponent<Camerafall>().govr = true;
+            Gm.instance.Gameover();
         }
         if (Input.GetMouseButtonDown(0) && !go)
         {
@@ -59,7 +64,7 @@ if(rb.velocity.z > 0)
            GameObject part= Instantiate(particle, col.gameObject.transform.position, Quaternion.identity);
             Destroy(col.gameObject);
             Destroy(part, 1f);
-     
+           
         }
     }
 }

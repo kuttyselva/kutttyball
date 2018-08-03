@@ -9,30 +9,34 @@ public class Platformspawn : MonoBehaviour {
 
     Vector3 lp;
         float size;
-    public bool gover;
+    public bool gover =false;
         // Use this for initialization
         void Start()
         {
             lp = platform.transform.position;
             size = platform.transform.localScale.x;
-       for (int i = 0; i < 10; i++)
+       /*for (int i = 0; i < 10; i++)
         {
             Spawnplat();
            
+        }*/
+       
         }
-        InvokeRepeating("Spawnplat",1f, 0.5f);
-        }
-
+    public void Startspawn()
+    {
+        InvokeRepeating("Spawnplat", 0.1f, 0.2f);
+    }
         // Update is called once per frame
         void Update()
         {
-        if (gover)
+        if ((GameObject.Find("Ball").GetComponent<BallController>().go) == true)
         {
             CancelInvoke("Spawnplat");
         }
     }
     void Spawnplat()
     {
+       
        
         int rand=Random.Range(0,6);
         if (rand < 3)
