@@ -11,6 +11,7 @@ public class Um : MonoBehaviour {
     public GameObject kutpan;
     public GameObject gopan;
     public GameObject taptxt;
+    public Text hms;
     public Text score;
     public Text hs1;
     public Text hs2;
@@ -25,12 +26,16 @@ public class Um : MonoBehaviour {
     }
     void Start () {
         hs1.text = "Highscore : "+PlayerPrefs.GetInt("hs").ToString();
+      
     }
 	public void Gamestart()
     {
        
         taptxt.SetActive(false);
         kutpan.GetComponent<Animator>().Play("panel");
+        hms.GetComponent<Animator>().Play("hms");
+        
+
     }
     public void Gameover()
     {
@@ -40,10 +45,10 @@ public class Um : MonoBehaviour {
     }
     public void Reset()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(0);
     }
     // Update is called once per frame
     void Update () {
-		
-	}
+       
+    }
 }

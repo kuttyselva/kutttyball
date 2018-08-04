@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Sm : MonoBehaviour {
     public static Sm instance;
     public int score;
     public int hs;
+    public Text hms;
 
     private void Awake()
     {
@@ -23,15 +24,24 @@ public class Sm : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+       
+    }
     void Incscore()
     {
-        score += 1;
+        score = GameObject.Find("Ball").GetComponent<BallController>().score;
+        
+        PlayerPrefs.SetInt("score", score);
+        hms.text = "score : " +score;
+
+
     }
     public void Startscore()
     {
-        InvokeRepeating("Incscore", 0.1f, 0.5f);
+       
+        InvokeRepeating("Incscore", 0.1f, 0.001f);
+        
+
+       
     }
     public void Stopscore()
     {

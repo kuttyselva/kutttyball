@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BallController : MonoBehaviour {
+    public static BallController instance;
     public GameObject particle;
   
     [SerializeField]
     private bool started;
-    public float speed=0f;
+    public float speed;
+    public int score;
     Rigidbody rb;
   
     public bool go;
@@ -45,7 +47,19 @@ public class BallController : MonoBehaviour {
         {
             SwitchDirection();
         }
-	}
+        if (score == 70)
+        {
+            speed += 0.01f;
+        }
+        if (score == 50)
+        {
+            speed += 0.01f;
+        }
+        if (score == 30)
+        {
+            speed += 0.01f;
+        }
+    }
     void SwitchDirection()
     {
 if(rb.velocity.z > 0)
@@ -57,11 +71,13 @@ if(rb.velocity.z > 0)
             rb.velocity = new Vector3(0, 0, speed);
         }
     }
-    private void OnTriggerEnter(Collider col)
+    public void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Diamond")
         {
-           GameObject part= Instantiate(particle, col.gameObject.transform.position, Quaternion.identity);
+            score += 1;
+            GameObject part= Instantiate(particle, col.gameObject.transform.position, Quaternion.identity);
+           
             Destroy(col.gameObject);
             Destroy(part, 1f);
            

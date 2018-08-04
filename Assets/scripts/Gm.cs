@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gm : MonoBehaviour {
     public static Gm instance;
     public bool gameover;
+  
     private void Awake()
     {
         if (instance == null)
@@ -24,8 +26,11 @@ public class Gm : MonoBehaviour {
     public void Startgame()
     {
         Um.instance.Gamestart();
+
         Sm.instance.Startscore();
+        
         GameObject.Find("Platforms").GetComponent<Platformspawn>().Startspawn();
+
     }
     public void Gameover()
     {
